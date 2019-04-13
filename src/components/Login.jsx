@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonButton, IonIcon } from '@ionic/react';
+import { IonButton } from '@ionic/react';
 import { connect } from 'react-redux';
 import { signIn } from '../actions';
 
@@ -13,6 +13,7 @@ class Login extends React.Component {
 				})
 				.then(() => {
 					this.auth = window.gapi.auth2.getAuthInstance();
+					this.onAuthChange(this.auth.isSignedIn.get());
 					this.auth.isSignedIn.listen(this.onAuthChange);
 				});
 		});
@@ -20,7 +21,7 @@ class Login extends React.Component {
 
 	onAuthChange = (isSignedIn) => {
 		if (isSignedIn) {
-			this.props.signIn();
+			this.props.signIn(this.auth.currentUser.get());
 		} else {
 			this.props.signOut();
 		}
@@ -33,12 +34,25 @@ class Login extends React.Component {
 	render() {
 		return (
 			<div>
-				<IonButton expand="block" fill="outline" color="danger">
-					Outline + Block
+				<IonButton
+					onClick={this.onSignInClick}
+					color="danger"
+					expand="block"
+					size="large"
+					mode="md"
+					style={{ backgroundColor: '#f44336', fontFamily: 'nunito' }}
+				>
+					Sign In
 				</IonButton>
 			</div>
 		);
 	}
 }
 
-export default connect(null, { signIn })(Login);
+const mapStateToProps = (state) => {
+	return {
+		isSignedIn: state.auth.isSignedIn
+	};
+};
+
+export default connect(mapStateToProps, { signIn })(Login);
