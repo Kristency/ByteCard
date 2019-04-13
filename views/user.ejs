@@ -1,0 +1,23 @@
+<form action="/api/user/add" method="POST">
+    <div>
+        Username : <input type="text" name="username">
+    </div>
+    <div>
+        Email : <input type="email" name="email">
+    </div>
+    <div>
+        googleId : <input type="text" name="googleId">
+    </div>
+    <div>
+        thumbnail : <input type="text" name="thumbnail">
+    </div>
+    <div>
+        <% cards.forEach((card)=>{ %>
+           <input type="checkbox" name="cards" value="<%=card._id%>"> : <%=card.name%> :: <%= card.phoneNo %>
+           <br>
+        <% }); %>
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>

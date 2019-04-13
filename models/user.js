@@ -1,21 +1,25 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
 	name : String,
-	phoneNo : String,
+	// phoneNo : String,
 	email : String,
 	googleId : String,
-	thumbnail : String,
+	thumbnail : {
+		type : String,
+		default : "https://www.colchestersun.com/wp-content/uploads/2018/01/user-dummy.png"
+	},
 	myCard : {
 		ref : "Cards",
-		type : Mongoose.Schema.Types.ObjectId
-	}
-	Cards : [{
+		type : mongoose.Schema.Types.ObjectId
+	},
+	cards : [{
 				card:{
 					ref : "Cards",
-					type : Mongoose.Schema.Types.ObjectId
+					type : mongoose.Schema.Types.ObjectId
 				},
 				Type : [String]
-			}];
+			}]
+});
 
 module.exports = mongoose.model("User",userSchema);

@@ -1,20 +1,22 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var cardSchema = new mongoose.Schema({
-	name = String,
-	phoneNo = String,
-	email = String,
-	address = String, 
+const cardSchema = new mongoose.Schema({
+	name : String,
+	phoneNo : String,
+	email : String,
+	address : String, 
 	//social
-	instagram = String,
-	facebook = String,
-	skype = String,
-	pinterest = String,
-	snapchat = String,
-	twitter = String,
+	instagram : String,
+	facebook : String,
+	skype : String,
+	pinterest : String,
+	snapchat : String,
+	twitter : String,
 	//professional
-	linkedIn = String,
-	angelList = String,
-	workAddress = String,
-	roleAtWork = String
+	linkedIn : String,
+	angelList : String,
+	workAddress : String,
+	roleAtWork : String
 });
+
+module.exports = mongoose.model("Card",cardSchema);
