@@ -8,7 +8,17 @@ import { fetchConnections } from '../actions';
 
 class BusinessCardsList extends Component {
 	componentDidMount() {
-		this.props.fetchConnections(this.props.currentUser.googleId);
+		window.gapi.load('client:auth2', () => {
+			window.gapi.client
+				.init({
+					clientId: '152828476993-vokbnvor86nsrku3b36bhkm8fsi25n02.apps.googleusercontent.com',
+					scope: 'profile'
+				})
+				.then(() => {
+					this.auth = window.gapi.auth2.getAuthInstance();
+					this.props.fetchConnections(this.auth.currentUser.get().getId());
+				});
+		});
 	}
 
 	state = {
@@ -110,8 +120,7 @@ class BusinessCardsList extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		connections: state.connections,
-		currentUser: state.currentUser
+		connections: state.connections
 	};
 };
 
