@@ -33,8 +33,8 @@ class Login extends React.Component {
 	render() {
 		return (
 			<div>
-				<IonButton onClick={this.onSignInClick} color="warning" size="large">
-					Log In
+				<IonButton expand="block" fill="outline" color="danger">
+					Outline + Block
 				</IonButton>
 			</div>
 		);

@@ -1,58 +1,99 @@
 import React from 'react';
 import { IonContent, IonFab, IonFabButton, IonIcon, IonFabList } from '@ionic/react';
 import {
-	IonItemGroup,
-	IonItemDivider,
-	IonLabel,
+	IonList,
 	IonItem,
+	IonLabel,
+	IonInput,
+	IonToggle,
+	IonRadio,
+	IonCheckbox,
 	IonItemSliding,
-	IonItemOptions,
-	IonItemOption
+	IonItemOption,
+	IonItemOptions
 } from '@ionic/react';
 
-const OptionsButton = () => {
-	return (
-		<div>
-			<IonItemGroup>
-				<IonItemDivider>
-					<IonLabel>A</IonLabel>
-				</IonItemDivider>
+class OptionsButton extends React.Component {
+	// expand() {
+	// 	console.log('expanded');
+	// }
+	render() {
+		return (
+			<div>
+				<IonList>
+					<IonItem>
+						<IonLabel>Pokémon Yellow</IonLabel>
+					</IonItem>
+					<IonItem>
+						<IonLabel>Mega Man X</IonLabel>
+					</IonItem>
+					<IonItem>
+						<IonLabel>The Legend of Zelda</IonLabel>
+					</IonItem>
+					<IonItem>
+						<IonLabel>Pac-Man</IonLabel>
+					</IonItem>
+					<IonItem>
+						<IonLabel>Super Mario World</IonLabel>
+					</IonItem>
+				</IonList>
 
-				<IonItem>
-					<IonLabel>Angola</IonLabel>
-				</IonItem>
-				<IonItem>
-					<IonLabel>Argentina</IonLabel>
-				</IonItem>
-				<IonItem>
-					<IonLabel>Armenia</IonLabel>
-				</IonItem>
-			</IonItemGroup>
+				{/*-- List of Input Items --*/}
+				<IonList>
+					<IonItem>
+						<IonLabel>Input</IonLabel>
+						<IonInput />
+					</IonItem>
+					<IonItem>
+						<IonLabel>Toggle</IonLabel>
+						<IonToggle slot="end" />
+					</IonItem>
+					<IonItem>
+						<IonLabel>Radio</IonLabel>
+						<IonRadio slot="end" />
+					</IonItem>
+					<IonItem>
+						<IonLabel>Checkbox</IonLabel>
+						<IonCheckbox slot="start" />
+					</IonItem>
+				</IonList>
 
-			<IonItemGroup>
-				<IonItemDivider>
-					<IonLabel>B</IonLabel>
-				</IonItemDivider>
+				{/*-- List of Sliding Items --*/}
+				<IonList>
+					<IonItemSliding>
+						<IonItem>
+							<IonLabel>Item</IonLabel>
+						</IonItem>
+						<IonItemOptions side="end">
+							<IonItemOption onClick={() => {}}>Unread</IonItemOption>
+						</IonItemOptions>
+					</IonItemSliding>
 
-				<IonItem>
-					<IonLabel>Bangladesh</IonLabel>
-				</IonItem>
-				<IonItem>
-					<IonLabel>Belarus</IonLabel>
-				</IonItem>
-				<IonItem>
-					<IonLabel>Belgium</IonLabel>
-				</IonItem>
-			</IonItemGroup>
-			<IonContent>
+					<IonItemSliding>
+						<IonItem>
+							<IonLabel>Item</IonLabel>
+						</IonItem>
+						<IonItemOptions side="end">
+							<IonItemOption onClick={() => {}}>Unread</IonItemOption>
+						</IonItemOptions>
+					</IonItemSliding>
+				</IonList>
 				<IonFab slot="fixed" vertical="bottom" horizontal="end">
 					<IonFabButton>
-						<IonIcon name="share" />
+						<IonIcon name="add" />
 					</IonFabButton>
+					<IonFabList side="top">
+						<IonFabButton color="vimeo">
+							<IonIcon name="expand" />
+						</IonFabButton>
+						<IonFabButton color="twitter">
+							<IonIcon name="add" />
+						</IonFabButton>
+					</IonFabList>
 				</IonFab>
-			</IonContent>
-		</div>
-	);
-};
+			</div>
+		);
+	}
+}
 
 export default OptionsButton;
