@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonFab, IonFabButton, IonIcon, IonFabList } from '@ionic/react';
 import { connect } from 'react-redux';
-import { signOut } from '../actions';
+import { signOut, fetchConnections } from '../actions';
 
 import { IonButton, IonList, IonItem, IonLabel, IonItemSliding, IonItemOption, IonItemOptions } from '@ionic/react';
 
@@ -15,6 +15,7 @@ class OptionsButton extends React.Component {
 				})
 				.then(() => {
 					this.auth = window.gapi.auth2.getAuthInstance();
+					this.props.fetchConnections(this.auth.currentUser.get().getId());
 				});
 		});
 	}
@@ -63,4 +64,4 @@ class OptionsButton extends React.Component {
 	}
 }
 
-export default connect(null, { signOut })(OptionsButton);
+export default connect(null, { signOut, fetchConnections })(OptionsButton);
