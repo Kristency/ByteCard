@@ -68,7 +68,7 @@ class BusinessCardsList extends Component {
 					<IonItem>
 						<IonLabel>{d.name}</IonLabel>
 					</IonItem>
-					<IonButton slot="end" style={{ paddingLeft: '30px' }}>
+					<IonButton fill="outline" slot="end" style={{ paddingLeft: '30px' }}>
 						{d.role}
 					</IonButton>
 				</IonItem>
@@ -87,16 +87,14 @@ class BusinessCardsList extends Component {
 					onDidDismiss={() => this.setState(() => ({ showModal: false }))}
 				>
 					<IonCard>
-						<IonItem>
-							<IonAvatar
-								style={{
-									marginLeft: '45%'
-								}}
-							>
-								<img src={this.state.modalData.thumbnail} />
-							</IonAvatar>
-							<IonItem>ghjkj</IonItem>
-						</IonItem>
+						<IonAvatar
+							style={{
+								marginLeft: '40%'
+							}}
+						>
+							<img src={this.state.modalData.thumbnail} />
+						</IonAvatar>
+						<IonLabel style={{ marginLeft: '40%', marginTop: '10%' }}>{this.state.modalData.name}</IonLabel>
 					</IonCard>
 					<IonButton onClick={() => this.setState(() => ({ showModal: false }))}>Close Modal</IonButton>
 				</IonModal>
