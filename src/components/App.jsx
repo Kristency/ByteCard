@@ -11,12 +11,14 @@ class App extends Component {
 		return (
 			<div>
 				<BrowserRouter>
-					<div>
-						<Route path="/" exact component={Login} />
-						<Route path="/profile" component={SidePane} />
-						<Route path="/profile/connections" exact component={OptionsButton} />
-						<Route path="/qr-reader" exact component={QrRead} />
-					</div>
+					<IonApp>
+						<div>
+							<Route path="/" exact component={Login} />
+							<Route path="/profile" component={SidePane} />
+							<Route path="/profile/connections" exact component={OptionsButton} />
+							<Route path="/qr-reader" exact component={QrRead} />
+						</div>
+					</IonApp>
 				</BrowserRouter>
 			</div>
 		);
