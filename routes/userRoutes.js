@@ -38,6 +38,7 @@ router.post("/add",(req,res) => {//to add a user to the database
 				});
 			}
 			else{
+				console.log(data);
 				console.log("user existed");
 				console.log("I responded the request sir");
 				res.send(foundUser);
@@ -49,10 +50,17 @@ router.post("/add",(req,res) => {//to add a user to the database
 
 router.get("/get/mycards/:userId",(req,res) => {// to get all cards of a user
 	userId = req.params.userId;
-	User.findById(userId,(err,foundUser) => {
+	User.findById(userId,"myCards")
+	.populate()
+	.exec((err,foundUser) => {
 		if(err){
 			console.error(err);
 			res.send({});
+		}
+		else{
+			if(foundUser == null){
+				res.send
+			}
 		}
 	})
 
