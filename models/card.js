@@ -1,10 +1,16 @@
 const mongoose = require("mongoose");
 
 const cardSchema = new mongoose.Schema({
+	//personal Info
+	type : String, 
 	name : String,
 	phoneNo : String,
 	email : String,
-	address : String, 
+	address : String,
+	thumbnail : {
+					type : String,
+					default : "https://www.colchestersun.com/wp-content/uploads/2018/01/user-dummy.png"
+				},
 	//social
 	instagram : String,
 	facebook : String,
@@ -12,6 +18,7 @@ const cardSchema = new mongoose.Schema({
 	pinterest : String,
 	snapchat : String,
 	twitter : String,
+	relation : String,
 	//professional
 	linkedIn : String,
 	angelList : String,
