@@ -1,5 +1,7 @@
 import React from 'react';
+import { Route, Redirect, Link } from 'react-router-dom';
 import { IonContent, IonFab, IonFabButton, IonIcon, IonFabList } from '@ionic/react';
+
 import {
 	IonList,
 	IonItem,
@@ -14,61 +16,13 @@ import {
 } from '@ionic/react';
 
 class OptionsButton extends React.Component {
-	// expand() {
-	// 	console.log('expanded');
-	// }
+	handleOnSubmit = () => {
+		this.props.history.push(`/qr-reader`);
+	};
 	render() {
 		return (
 			<div>
 				<IonList>
-					<IonItem>
-						<IonLabel>Pokémon Yellow</IonLabel>
-					</IonItem>
-					<IonItem>
-						<IonLabel>Mega Man X</IonLabel>
-					</IonItem>
-					<IonItem>
-						<IonLabel>The Legend of Zelda</IonLabel>
-					</IonItem>
-					<IonItem>
-						<IonLabel>Pac-Man</IonLabel>
-					</IonItem>
-					<IonItem>
-						<IonLabel>Super Mario World</IonLabel>
-					</IonItem>
-				</IonList>
-
-				{/*-- List of Input Items --*/}
-				<IonList>
-					<IonItem>
-						<IonLabel>Input</IonLabel>
-						<IonInput />
-					</IonItem>
-					<IonItem>
-						<IonLabel>Toggle</IonLabel>
-						<IonToggle slot="end" />
-					</IonItem>
-					<IonItem>
-						<IonLabel>Radio</IonLabel>
-						<IonRadio slot="end" />
-					</IonItem>
-					<IonItem>
-						<IonLabel>Checkbox</IonLabel>
-						<IonCheckbox slot="start" />
-					</IonItem>
-				</IonList>
-
-				{/*-- List of Sliding Items --*/}
-				<IonList>
-					<IonItemSliding>
-						<IonItem>
-							<IonLabel>Item</IonLabel>
-						</IonItem>
-						<IonItemOptions side="end">
-							<IonItemOption onClick={() => {}}>Unread</IonItemOption>
-						</IonItemOptions>
-					</IonItemSliding>
-
 					<IonItemSliding>
 						<IonItem>
 							<IonLabel>Item</IonLabel>
@@ -84,9 +38,11 @@ class OptionsButton extends React.Component {
 					</IonFabButton>
 					<IonFabList side="top">
 						<IonFabButton color="vimeo">
-							<IonIcon name="expand" />
+							{/* <Link to="/qr-reader"> */}
+							<IonIcon name="expand" onClick={this.handleOnSubmit} />
+							{/* </Link> */}
 						</IonFabButton>
-						<IonFabButton color="twitter">
+						<IonFabButton ion-text color="danger">
 							<IonIcon name="add" />
 						</IonFabButton>
 					</IonFabList>
