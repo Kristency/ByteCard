@@ -64,4 +64,10 @@ class OptionsButton extends React.Component {
 	}
 }
 
-export default connect(null, { signOut, fetchConnections })(OptionsButton);
+const mapStateToProps = (state) => {
+	return {
+		connections: state.connections
+	};
+};
+
+export default connect(mapStateToProps, { signOut, fetchConnections })(OptionsButton);
