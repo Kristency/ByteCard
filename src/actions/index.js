@@ -30,13 +30,16 @@ export const signOut = () => {
 	};
 };
 
-export const readQRCode = () => {
+export const readQRCode = (gId, cardId) => {
 	return async (dispatch) => {
 		const response = await axios({
 			method: 'post',
-			url: 'https://bytecard.herokuapp.com/api/user/add',
+			url: 'https:/bytecard.herokuapp.com/api/card/add',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: formUrlEncoded({})
+			data: formUrlEncoded({
+				gid: gId,
+				cardId: cardId
+			})
 		});
 		dispatch({
 			type: NEW_CARD,

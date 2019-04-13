@@ -1,34 +1,24 @@
 import React from 'react';
 import { IonTabs, IonTabButton, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonPage } from '@ionic/react';
 import { Route, Redirect } from 'react-router';
-import QrRead from './QrRead';
 import Login from './Login';
 class TopPane extends React.Component {
 	render() {
 		return (
 			<IonPage>
-				<Route exact path="/profile" render={() => <Redirect to="/profile" />} />
-				{/**
-     * Only render exact matches.  Only destroy on back button click
-     * On history.push keep previous route stored for back button
-     *
-     * TabBar does a push on iontabbutton click.
-     * TabBar updates the tab links based on the current route path.
-     */}
-
 				<IonTabs>
 					<IonRouterOutlet>
-						<Route path="/:tab(profile)" component={QrRead} exact={true} />
+						<Route path="/:tab(profile)" component={Login} exact={true} />
 						<Route path="/:tab(connections)" component={Login} exact={true} />
 					</IonRouterOutlet>
 					<IonTabBar slot="top">
 						<IonTabButton tab="profile" href="/profile">
 							<IonIcon name="contact" />
-							<IonLabel>Our Fish</IonLabel>
+							<IonLabel>Profile</IonLabel>
 						</IonTabButton>
 						<IonTabButton tab="connections" href="/connections">
 							<IonIcon name="contacts" />
-							<IonLabel>Branches</IonLabel>
+							<IonLabel>Connections</IonLabel>
 						</IonTabButton>
 					</IonTabBar>
 				</IonTabs>
