@@ -8,7 +8,7 @@ var mongoose 		= require("mongoose");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors());
 dotenv.config();
-mongoose.connect(process.env.LDATABASEURL,{useNewUrlParser:true});
+mongoose.connect(process.env.DATABASEURL,{useNewUrlParser:true});
 
 app.get("/",(req,res) => {
 	res.send("Working fine sir");
