@@ -20,12 +20,19 @@ import {
 import { IonCard } from '@ionic/react';
 
 import { IonItemSliding, IonItemOption, IonItemOptions } from '@ionic/react';
+import { connect } from 'react-redux';
+import { fetchConnections } from '../actions';
 
 class BusinessCardsList extends Component {
+	componentDidMount() {
+		this.props.fetchConnections(this.props.currentUser.googleId);
+	}
+
 	state = {
 		showModal: false,
 		modalData: {}
 	};
+
 	data = [
 		{
 			name: 'Nandi',
@@ -105,4 +112,11 @@ class BusinessCardsList extends Component {
 	}
 }
 
-export default BusinessCardsList;
+const mapStateToProps = (state) => {
+	return {
+		connections: state.connections,
+		currentUser: state.currentUser
+	};
+};
+
+export default connect(mapStateToProps, { fetchConnections })(BusinessCardsList);
