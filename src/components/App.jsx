@@ -15,7 +15,7 @@ class App extends Component {
 					<div>
 						<IonApp>
 							<Route path="/" exact component={Login} />
-							<Route path="/profile" component={TopPane} />
+							<Route path="/profile" exact component={TopPane} />
 							<Route path="/profile/connections" exact component={BusinessCardsList} />
 							<Route path="/profile" component={OptionsButton} />
 							<Route path="/qr-reader" exact component={QrRead} />

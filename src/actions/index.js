@@ -36,9 +36,7 @@ export const readQRCode = () => {
 			method: 'post',
 			url: 'https://bytecard.herokuapp.com/api/user/add',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: formUrlEncoded({
-				t
-			})
+			data: formUrlEncoded({})
 		});
 		dispatch({
 			type: NEW_CARD,

@@ -3,10 +3,12 @@ import { IonTabs, IonTabButton, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, I
 import { Route, Redirect } from 'react-router';
 import QrRead from './QrRead';
 import Login from './Login';
-const TopPane = () => (
-	<IonPage>
-		<Route exact path="/" render={() => <Redirect to="/profile" />} />
-		{/**
+class TopPane extends React.Component {
+	render() {
+		return (
+			<IonPage>
+				<Route exact path="/profile" render={() => <Redirect to="/profile" />} />
+				{/**
      * Only render exact matches.  Only destroy on back button click
      * On history.push keep previous route stored for back button
      *
@@ -14,24 +16,26 @@ const TopPane = () => (
      * TabBar updates the tab links based on the current route path.
      */}
 
-		<IonTabs>
-			<IonRouterOutlet>
-				<Route path="/:tab(profile)" component={QrRead} exact={true} />
-				<Route path="/:tab(connections)" component={Login} exact={true} />
-			</IonRouterOutlet>
-			<IonTabBar slot="top">
-				<IonTabButton tab="profile" href="/profile">
-					<IonIcon name="contact" />
-					<IonLabel>Our Fish</IonLabel>
-				</IonTabButton>
-				<IonTabButton tab="connections" href="/connections">
-					<IonIcon name="contacts" />
-					<IonLabel>Branches</IonLabel>
-				</IonTabButton>
-			</IonTabBar>
-		</IonTabs>
-	</IonPage>
-);
+				<IonTabs>
+					<IonRouterOutlet>
+						<Route path="/:tab(profile)" component={QrRead} exact={true} />
+						<Route path="/:tab(connections)" component={Login} exact={true} />
+					</IonRouterOutlet>
+					<IonTabBar slot="top">
+						<IonTabButton tab="profile" href="/profile">
+							<IonIcon name="contact" />
+							<IonLabel>Our Fish</IonLabel>
+						</IonTabButton>
+						<IonTabButton tab="connections" href="/connections">
+							<IonIcon name="contacts" />
+							<IonLabel>Branches</IonLabel>
+						</IonTabButton>
+					</IonTabBar>
+				</IonTabs>
+			</IonPage>
+		);
+	}
+}
 
 export default TopPane;
 
