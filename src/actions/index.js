@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT, NEW_CARD, FETCH_CONNECTIONS } from './types';
+import { SIGN_IN, SIGN_OUT, NEW_CARD, FETCH_CONNECTIONS, FETCH_MY_CARDS } from './types';
 import axios from 'axios';
 
 const formUrlEncoded = (x) => Object.keys(x).reduce((p, c) => p + `&${c}=${encodeURIComponent(x[c])}`, '');
@@ -57,6 +57,20 @@ export const fetchConnections = (gId) => {
 
 		dispatch({
 			type: FETCH_CONNECTIONS,
+			payload: response.data
+		});
+	};
+};
+
+export const fetchMyCards = (gId) => {
+	return async (dispatch) => {
+		const response = await axios({
+			method: 'get',
+			url: `https:/bytecard.herokuapp.com/api/user/get/mycards/${gId}`
+		});
+
+		dispatch({
+			type: FETCH_MY_CARDS,
 			payload: response.data
 		});
 	};
