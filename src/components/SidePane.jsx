@@ -5,7 +5,6 @@ import { IonMenu, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem,
 const SidePane = () => (
 	<div>
 		<QrGenerate />
-
 		<IonMenu side="start" menuId="first">
 			<IonHeader>
 				<IonToolbar color="primary">

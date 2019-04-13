@@ -22,16 +22,6 @@ class OptionsButton extends React.Component {
 	render() {
 		return (
 			<div>
-				<IonList>
-					<IonItemSliding>
-						<IonItem>
-							<IonLabel>Item</IonLabel>
-						</IonItem>
-						<IonItemOptions side="end">
-							<IonItemOption onClick={() => {}}>Unread</IonItemOption>
-						</IonItemOptions>
-					</IonItemSliding>
-				</IonList>
 				<IonFab slot="fixed" vertical="bottom" horizontal="end">
 					<IonFabButton>
 						<IonIcon name="add" />
