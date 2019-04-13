@@ -1,6 +1,7 @@
 import React from 'react';
 import { IonButton } from '@ionic/react';
 import { connect } from 'react-redux';
+
 import { signIn } from '../actions';
 
 class Login extends React.Component {
@@ -13,22 +14,22 @@ class Login extends React.Component {
 				})
 				.then(() => {
 					this.auth = window.gapi.auth2.getAuthInstance();
-					this.onAuthChange(this.auth.isSignedIn.get());
-					this.auth.isSignedIn.listen(this.onAuthChange);
 				});
 		});
 	}
 
-	onAuthChange = (isSignedIn) => {
-		if (isSignedIn) {
-			this.props.signIn(this.auth.currentUser.get());
-		} else {
-			this.props.signOut();
-		}
-	};
-
 	onSignInClick = () => {
-		this.auth.signIn();
+		this.auth.signIn().then(() => {
+			const profile = this.auth.currentUser.get().getBasicProfile();
+			const currentUser = {
+				thumbnail: profile.getImageUrl(),
+				name: profile.getName(),
+				email: profile.getEmail(),
+				googleId: profile.getId()
+			};
+			this.props.signIn(currentUser);
+			this.props.history.push('/profile/connections');
+		});
 	};
 
 	render() {
@@ -49,10 +50,4 @@ class Login extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		isSignedIn: state.auth.isSignedIn
-	};
-};
-
-export default connect(mapStateToProps, { signIn })(Login);
+export default connect(null, { signIn })(Login);

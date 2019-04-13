@@ -1,24 +1,35 @@
 import React from 'react';
-import { Route, Redirect, Link } from 'react-router-dom';
-import { IonContent, IonFab, IonFabButton, IonIcon, IonFabList } from '@ionic/react';
+import { IonFab, IonFabButton, IonIcon, IonFabList } from '@ionic/react';
+import { connect } from 'react-redux';
+import { signOut } from '../actions';
 
-import {
-	IonList,
-	IonItem,
-	IonLabel,
-	IonInput,
-	IonToggle,
-	IonRadio,
-	IonCheckbox,
-	IonItemSliding,
-	IonItemOption,
-	IonItemOptions
-} from '@ionic/react';
+import { IonButton, IonList, IonItem, IonLabel, IonItemSliding, IonItemOption, IonItemOptions } from '@ionic/react';
 
 class OptionsButton extends React.Component {
+	componentDidMount() {
+		window.gapi.load('client:auth2', () => {
+			window.gapi.client
+				.init({
+					clientId: '152828476993-vokbnvor86nsrku3b36bhkm8fsi25n02.apps.googleusercontent.com',
+					scope: 'profile'
+				})
+				.then(() => {
+					this.auth = window.gapi.auth2.getAuthInstance();
+				});
+		});
+	}
+
 	handleOnSubmit = () => {
-		this.props.history.push(`/qr-reader`);
+		this.props.history.push('/qr-reader');
 	};
+
+	onSignOutClick = () => {
+		this.auth.signOut().then(() => {
+			this.props.signOut();
+			this.props.history.push('/');
+		});
+	};
+
 	render() {
 		return (
 			<div>
@@ -47,9 +58,19 @@ class OptionsButton extends React.Component {
 						</IonFabButton>
 					</IonFabList>
 				</IonFab>
+				<IonButton
+					onClick={this.onSignOutClick}
+					color="danger"
+					expand="block"
+					size="large"
+					mode="md"
+					style={{ backgroundColor: '#f44336', fontFamily: 'nunito' }}
+				>
+					Sign Out
+				</IonButton>
 			</div>
 		);
 	}
 }
 
-export default OptionsButton;
+export default connect(null, { signOut })(OptionsButton);
