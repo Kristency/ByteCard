@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import QrReader from 'react-qr-reader';
+import { connect } from 'react-redux';
+
+import { readQRCode } from '../actions';
 
 class QrRead extends Component {
-	state = {
-		result: 'No result'
-	};
-
 	handleScan = (data) => {
 		if (data) {
-			this.setState({
-				result: data
-			});
+			this.props.readQRCode(data);
 		}
 	};
+
 	handleError = (err) => {
 		console.error(err);
 	};
+
 	render() {
 		return (
 			<div>
@@ -26,4 +25,4 @@ class QrRead extends Component {
 	}
 }
 
-export default QrRead;
+export default connect(null, { readQRCode })(QrRead);
