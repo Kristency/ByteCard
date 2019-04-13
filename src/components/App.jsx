@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { IonApp } from '@ionic/react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import SidePane from './SidePane';
+import TopPane from './TopPane';
 import OptionsButton from './OptionsButton';
 import BusinessCardsList from './BusinessCardsList';
 import Login from './Login';
@@ -15,7 +15,7 @@ class App extends Component {
 					<div>
 						<IonApp>
 							<Route path="/" exact component={Login} />
-							<Route path="/profile" component={SidePane} />
+							<Route path="/profile" component={TopPane} />
 							<Route path="/profile/connections" exact component={BusinessCardsList} />
 							<Route path="/profile" component={OptionsButton} />
 							<Route path="/qr-reader" exact component={QrRead} />

@@ -1,24 +1,7 @@
 import React, { Component } from 'react';
-import { IonAvatar, IonChip, IonModal, IonImg } from '@ionic/react';
-import {
-	IonItem,
-	IonLabel,
-	IonList,
-	IonText,
-	IonThumbnail,
-	IonButton,
-	IonIcon,
-	IonSelect,
-	IonSelectOption,
-	IonDatetime,
-	IonToggle,
-	IonInput,
-	IonCheckbox,
-	IonRange
-} from '@ionic/react';
-
+import { IonAvatar, IonModal } from '@ionic/react';
+import { IonItem, IonLabel, IonList, IonButton } from '@ionic/react';
 import { IonCard } from '@ionic/react';
-
 import { IonItemSliding, IonItemOption, IonItemOptions } from '@ionic/react';
 
 class BusinessCardsList extends Component {
@@ -29,21 +12,21 @@ class BusinessCardsList extends Component {
 	data = [
 		{
 			name: 'Nandi',
-			phone: '56789086755',
+			phoneNo: '56789086755',
 			linkedIn: 'linkedIn/nandi',
 			thumbnail: 'https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg',
 			role: 'assistant'
 		},
 		{
 			name: 'Akshat',
-			phone: '7654656789',
+			phoneNo: '7654656789',
 			linkedIn: 'linkedIn/akshat',
 			role: 'boss',
 			thumbnail: 'https://cdn.pixabay.com/photo/2017/03/04/12/15/programming-2115930__340.jpg'
 		},
 		{
 			name: 'Abhimanyu',
-			phone: '76563456789',
+			phoneNo: '76563456789',
 			linkedIn: 'linkedIn/abhimanyu',
 			role: 'partner',
 			thumbnail: 'https://cdn.pixabay.com/photo/2017/08/31/09/01/woman-2699801__340.jpg'
@@ -68,7 +51,7 @@ class BusinessCardsList extends Component {
 					<IonItem>
 						<IonLabel>{d.name}</IonLabel>
 					</IonItem>
-					<IonButton fill="outline" slot="end" style={{ paddingLeft: '30px' }}>
+					<IonButton fill="outline" slot="end">
 						{d.role}
 					</IonButton>
 				</IonItem>
@@ -94,9 +77,22 @@ class BusinessCardsList extends Component {
 						>
 							<img src={this.state.modalData.thumbnail} />
 						</IonAvatar>
-						<IonLabel style={{ marginLeft: '40%', marginTop: '10%' }}>{this.state.modalData.name}</IonLabel>
+						<IonItem>
+							<IonLabel style={{ marginLeft: '5%' }}>
+								<b>{this.state.modalData.name}</b>
+							</IonLabel>
+						</IonItem>
+						<IonItem>
+							<IonLabel style={{ marginLeft: '10%' }}>{this.state.modalData.linkedIn}</IonLabel>
+							<IonLabel>{this.state.modalData.phoneNo}</IonLabel>
+						</IonItem>
 					</IonCard>
-					<IonButton onClick={() => this.setState(() => ({ showModal: false }))}>Close Modal</IonButton>
+					<IonButton
+						style={{ marginLeft: '37%' }}
+						onClick={() => this.setState(() => ({ showModal: false }))}
+					>
+						Close
+					</IonButton>
 				</IonModal>
 
 				<IonList>{this.listItems}</IonList>
