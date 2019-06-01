@@ -5,9 +5,15 @@ import { connect } from 'react-redux';
 import { readQRCode } from '../actions';
 
 class QrRead extends Component {
+	state = {
+		result: ''
+	};
+
 	handleScan = (data) => {
 		if (data) {
-			this.props.readQRCode(data);
+			this.setState({
+				result: data
+			});
 		}
 	};
 
